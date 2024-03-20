@@ -1,0 +1,27 @@
+Ejercicio 1
+
+a)La vairable de clase es "x"
+b)La variable de instancia es "y"
+
+la salida que produce el codigo es:
+a.y = 5
+b.y = 6
+a.x = 2
+b.x = 2
+IdentifyMyParts.x = 2
+
+
+Ejercicio 2
+
+1) lo que está mal es que se intenta modificar variables de myReact, pero este no se ha inicializado.
+2)
+public class SomethingIsWrong {
+    public static void main(String[] args) {
+        Rectangle myRect = new Rectangle;
+        myRect.width = 40;
+        myRect.height = 50;
+        System.out.println("myRect's area is " + myRect.area());
+    }
+}
+
+
