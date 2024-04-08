@@ -1,0 +1,40 @@
+Lenguaje natural:
+Recorremos caracter por caracter viendo si es "{" o "}", si es "{" hacemos push de un elemento x a una pila y si es "}", primero verificamos si está vacia la pila y si lo está ya sabemos que hay un error y devolvemos falso, si no está vacia hacemos un pop de la pila.
+Al final si la pila no está vacia devolvemos falso y si está vacia devolvemos verdadero.
+
+
+
+Pre condiciones:
+
+
+Pos condiciones:
+La lista debería mantenerse inmutada
+
+
+De tipo booleano controlCorchetes(de tipo lista de caracteres listaDeEntrada)
+COM
+	pila <- nueva pila				o(1)
+	para cada caracter en listaDeEntrada hacer	o(N)
+		si caracter = "{"			o(1)
+			pila.push("{")			o(1)
+		sino si caracter = "}"			o(1)
+			si pila.vacia()			o(1)
+				devolver falso		o(1)
+			sino 				o(1)
+				pila.pop()		o(1)
+			fin si
+		fin si
+	fin para cada
+	devolver pila.vacia()				o(1)
+FIN
+
+El orden de tiempo de ejecucion temrina siendo O(N).
+
+
+
+
+
+
+
+
+
