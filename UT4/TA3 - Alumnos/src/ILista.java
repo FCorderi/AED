@@ -1,4 +1,3 @@
-package com.example;
 
 public interface ILista<T> {
 
@@ -7,7 +6,7 @@ public interface ILista<T> {
      *
      * @param nodo - Nodo a agregar
      */
-    public void insertar(TDANodo<T> nodo);
+    public void insertar(Nodo<T> nodo);
 
     /**
      * Metodo encargado de buscar un nodo cuya clave es la indicada.
@@ -15,7 +14,7 @@ public interface ILista<T> {
      * @param clave - Clave del nodo a buscar.
      * @return El nodo encontrado. En caso de no encontrarlo, retornar null.
      */
-    public TDANodo<T> buscar(Comparable clave);
+    public Nodo<T> buscar(Comparable clave);
 
     /**
      * Metodo encargado de eliminar un nodo cuya clave es la indicada.
@@ -56,6 +55,6 @@ public interface ILista<T> {
      */
     public boolean esVacia();
     
-    public void setPrimero( TDANodo<T> unNodo);    
+    public void setPrimero( Nodo<T> unNodo);    
 
 }

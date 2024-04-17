@@ -1,4 +1,4 @@
-package com.example;
+package com.example.Lista;
 
 public class TDALista<T> implements ILista{
     

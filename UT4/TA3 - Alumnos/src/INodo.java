@@ -1,5 +1,3 @@
-package com.example;
-
 public interface INodo<T> {
 
     
@@ -13,22 +11,27 @@ public interface INodo<T> {
      * devuelve el siguiente del nodo
      * @return 
      */
-    public TDANodo<T> getSiguiente();
+    public Nodo<T> getSiguiente();
+    
     
     /**
      * "engancha" otro nodo a continuacion
      * 
      */
-    public void setSiguiente(TDANodo<T> nodo);
+    public void setSiguiente(Nodo<T> nodo);
     
     /**
      * Imprime los datos del nodo
      */
+    
+    
+    
     public void imprimir();
 
     /**
      * Imprime la etiqueta del nodo
      */
+    
     public void imprimirEtiqueta();
 
     
@@ -38,7 +41,12 @@ public interface INodo<T> {
      * @return etiqueta del nodo
      */
     public Comparable getEtiqueta();
-
+//	/**
+//	 *
+//	 * @param unNodo
+//	 * @return devueve -1 si this tiene una clave menor, 0 si son iguales, 1 si es mayor
+//	 */
+//	public int compareTo(INodo<E> unNodo);
 
     /**
      *

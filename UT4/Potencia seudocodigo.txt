@@ -1,0 +1,17 @@
+Lenguaje natural:
+Primero tenemos en cuenta el caso base el cual es si n es 0, en el cual devolvemos 1.
+En caso contrario devolvemos x multiplicado por la llamada recursiva de potencia con n-1.
+
+pre condiciones:
+n debe ser mayor o igual a 0
+
+pos condiciones:
+
+
+Potencia(x de tipo entero, n de tipo entero): devuelve un entero
+COM
+	si n=0
+		devolver 1
+	fin si
+	devolver x*potencia(x,n-1)
+FIN

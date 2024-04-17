@@ -1,5 +1,5 @@
 
-package com.example;
+package com.example.Lista;
 
 public class TDANodo<T> implements INodo{
     
