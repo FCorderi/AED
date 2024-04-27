@@ -1,0 +1,29 @@
+Ejercicio 1
+
+¿Cuál de las siguientes afirmaciones es correcta?
+Las afirmaciones correctas son la opcion a y la opicon d
+
+En el árbol resultante (indica la respuesta correcta y analiza por qué las demás no lo son):
+El arbol si tiene 5 hojas, son "C", "N", "S", "V" y "Z"
+"V" no es descendiente de "S" ya que no estan en el mismo sub arbol de la raiz "T"
+"K" no es hermano de "J" ya que "J" es un hijo de "K"
+"A" y "X" no estan en el mismo nivel, "A" esta en el nivel 5 y "X" esta en el nivel 3
+
+Para imprimir las claves en oden lexicografico basta con recorrer el arbol en PREORDEN
+
+
+Ejercicio 2
+
+1. El algoritmo devuelve la altura del arbol.
+2. El orden del tiempo de ejecucion del algoritmo es O(n)
+
+
+Ejercicio 3
+
+1. Preorden: 12, 1, 2, 7, 5, 35, 14, 33, 88, 45, 66, 99
+    Inorden: 1, 2, 5, 7, 12, 14, 25, 33, 45, 66, 88, 99
+    Postorden: 5, 7, 2, 1, 14, 66, 45, 99, 88, 33, 25, 12
+
+2. Preorden: 7, 1, 5, 25, 14, 88, 45, 66
+    Inorden: 1, 5, 7, 14, 25, 45, 66, 88
+    Postorden: 5, 1, 14, 66, 45, 88, 25, 7
