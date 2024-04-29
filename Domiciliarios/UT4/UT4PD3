@@ -9,7 +9,7 @@ pre:
 
 post:
 
-TArbolBB insertar (unElemento : TElementoAB) devuelve un booleano   O(N)
+TArbolBB insertar(unElemento : TElementoAB) devuelve un booleano   O(N)
 COM 
     si raiz <> nulo
         devolver raiz.insertar(unElemento)  O(N)
@@ -28,7 +28,7 @@ pre:
 
 post:
 
-TElementoAB insertar (unElemento : TElementoAB) devuelve un booleano   O(N)
+TElementoAB insertar(unElemento : TElementoAB) devuelve un booleano   O(N)
 COM
     si unElemento.etiqueta < etiqueta
         si hijoIzq <> nulo
@@ -60,12 +60,12 @@ pre:
 
 post:
 
-TArbolBB obtenerCantidadHojas () devuelve tipo entero
+TArbolBB obtenerCantidadHojas() devuelve tipo entero    O(N)
 COM
-    si raiz = nulo
-        devolver 0
+    si raiz = nulo  
+        devolver 0                      O(1)
     fin si
-    devolver raiz.obtenerCantidadHojas
+    devolver raiz.obtenerCantidadHojas  O(N)
 FIN
 
 Metodo elemento
@@ -79,22 +79,22 @@ pre:
 
 post:
 
-TElementoAB obtenerCantidadHojas() devuelve tipo entero
+TElementoAB obtenerCantidadHojas() devuelve tipo entero O(N)
 COM
-    int hojas <-0
-    booleano esHoja <- verdadero
+    int hojas <-0                                       O(1)
+    booleano esHoja <- verdadero                        O(1)
     si hijoIzq <> nulo
-        hojas <- hojas + hijoIzq.obtenerCantidadHojas
-        esHoja <- falso
+        hojas <- hojas + hijoIzq.obtenerCantidadHojas   o(N)
+        esHoja <- falso                                 O(1)
     fin si
     si hijoDer <> nulo
-        hojas <- hojas + hijoDer.obtenerCantidadHojas
-        esHoja <- falso
+        hojas <- hojas + hijoDer.obtenerCantidadHojas   O(N)
+        esHoja <- falso                                 O(1)
     fin si
     si esHoja
-        devolver 1 
+        devolver 1                                      O(1)
     fin si
-    devolver hojas
+    devolver hojas                                      O(1)
 FIN
 
 
@@ -109,12 +109,12 @@ pre:
 
 post:
 
-TArbolBB sumaDeClaves () devuelve tipo entero
+TArbolBB sumaDeClaves () devuelve tipo entero   O(N)
 COM
     si raiz = nulo
-        devolver 0
+        devolver 0              O(1)
     fin si
-    devolver raiz.sumaDeClaves
+    devolver raiz.sumaDeClaves  O(N)
 FIN
 
 Metodo elemento
@@ -127,15 +127,15 @@ pre:
 las claves de los elementos son de tipo entero
 post:
 
-TElementoAB sumaDeClaves() devuelve tipo entero
+TElementoAB sumaDeClaves() devuelve tipo entero O(N)
 COM
-    int total <-0
+    int total <-0                               O(1)
     si hijoIzq <> nulo
-        total <- total + hijoIzq.sumaDeClaves
+        total <- total + hijoIzq.sumaDeClaves   O(N)
     fin si
     si hijoDer <> nulo
-        total <- total + hijoDer.sumaDeClaves
+        total <- total + hijoDer.sumaDeClaves   O(N)
     fin si
-    devolver total + clave
+    devolver total + clave                      O(1)
 FIN
 
