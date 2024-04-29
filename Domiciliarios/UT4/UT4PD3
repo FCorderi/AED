@@ -65,7 +65,7 @@ COM
     si raiz = nulo  
         devolver 0                      O(1)
     fin si
-    devolver raiz.obtenerCantidadHojas  O(N)
+    devolver raiz.obtenerCantidadHojas()  O(N)
 FIN
 
 Metodo elemento
@@ -84,11 +84,11 @@ COM
     int hojas <-0                                       O(1)
     booleano esHoja <- verdadero                        O(1)
     si hijoIzq <> nulo
-        hojas <- hojas + hijoIzq.obtenerCantidadHojas   o(N)
+        hojas <- hojas + hijoIzq.obtenerCantidadHojas()   o(N)
         esHoja <- falso                                 O(1)
     fin si
     si hijoDer <> nulo
-        hojas <- hojas + hijoDer.obtenerCantidadHojas   O(N)
+        hojas <- hojas + hijoDer.obtenerCantidadHojas()   O(N)
         esHoja <- falso                                 O(1)
     fin si
     si esHoja
@@ -114,7 +114,7 @@ COM
     si raiz = nulo
         devolver 0              O(1)
     fin si
-    devolver raiz.sumaDeClaves  O(N)
+    devolver raiz.sumaDeClaves()  O(N)
 FIN
 
 Metodo elemento
@@ -131,11 +131,56 @@ TElementoAB sumaDeClaves() devuelve tipo entero O(N)
 COM
     int total <-0                               O(1)
     si hijoIzq <> nulo
-        total <- total + hijoIzq.sumaDeClaves   O(N)
+        total <- total + hijoIzq.sumaDeClaves()   O(N)
     fin si
     si hijoDer <> nulo
-        total <- total + hijoDer.sumaDeClaves   O(N)
+        total <- total + hijoDer.sumaDeClaves()   O(N)
     fin si
     devolver total + clave                      O(1)
 FIN
 
+
+
+Ejercicio 4
+
+Metodo Árbol
+LN: 
+si la raíz es nula devolvemos 0, sino devolvemos lo que devuelva la llamada de contarNodosNivel de la raíz.
+
+pre:
+
+post:
+
+TArbolBB contarNodosNivel (nivel : tipo entero) devuelve tipo entero   O(N)
+COM
+    si raiz = nulo
+        devolver 0              O(1)
+    fin si
+    devolver raiz.contarNodosNivel(nivel)  O(N)
+FIN
+
+Metodo elemento
+LN:
+creamos un contador que empieza vacio, primero nos fijamos si el nivel en el que estamos es 0, si es así,
+devolvemos 1, luego chequeamos si tenemos hijos, en caso que tengamos
+sumamos al total lo que devuelve la llamada de contarNodosNivel de cada hijo pasandole como parametro el nivel -1,
+al final devolvemos el total.
+
+pre:
+
+post:
+
+TElementoAB contarNodosNivel(nivel : tipo entero) devuelve tipo entero O(N)
+COM
+    int totalNodos <-0                          O(1)
+    si nivel = 0
+        devolver 1                              O(1)
+    fin si                               
+    si hijoIzq <> nulo
+        totalNodos <- totalNodos + hijoIzq.contarNodosNivel(nivel - 1)   O(N)
+    fin si
+    si hijoDer <> nulo
+        totalNodos <- totalNodos + hijoDer.contarNodosNivel(nivel - 1)   O(N)
+    fin si
+    devolver totalNodos                         O(1)
+FIN

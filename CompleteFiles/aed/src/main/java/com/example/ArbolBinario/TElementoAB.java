@@ -180,4 +180,18 @@ public class TElementoAB<T> implements IElementoAB<T> {
         }
     }
 
+    public int contarNodosNivel(int nivel){
+        int sumaNodosNivel = 0;
+        if (nivel == 0){
+            return 1;
+        }
+        if (hijoIzq != null){
+            sumaNodosNivel += hijoIzq.contarNodosNivel(nivel-1);
+        }
+        if(hijoDer != null){
+            sumaNodosNivel += hijoDer.contarNodosNivel(nivel-1);
+        }
+        return sumaNodosNivel;
+    }
+
 }

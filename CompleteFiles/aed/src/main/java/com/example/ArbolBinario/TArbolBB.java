@@ -73,4 +73,12 @@ public class TArbolBB<T> implements IArbolBB<T> {
         }
     }
 
+    public int contarNodosNivel(int nivel){
+        if(raiz == null){
+            return 0;
+        }else{
+            return raiz.contarNodosNivel(nivel);
+        }
+    }
+
 }
