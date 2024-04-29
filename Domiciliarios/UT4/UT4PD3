@@ -1,0 +1,141 @@
+Ejercicio 1
+
+Metodo de arbol
+LN:
+verificamos si el arbol no esta vacio, si lo está, insertamos el elemento en la raíz,
+si no lo está llamamos al insertar de la raíz.
+
+pre:
+
+post:
+
+TArbolBB insertar (unElemento : TElementoAB) devuelve un booleano   O(N)
+COM 
+    si raiz <> nulo
+        devolver raiz.insertar(unElemento)  O(N)
+    fin si
+    raiz <- unElemento                      O(1)
+    devolver verdadero                      O(1)
+FIN
+
+Metodo elemento
+LN:
+primero verificamos si el elemento a insertar es menor o mayor al elemento en el que estamos,
+si es menor nos fijamos en el hijo izquierdo sinó nos fijamos en el derecho,
+si no hay hijo donde nos fijamos insertamos el nuevo elemento en ese lugar, sino llamamos al insertar del hijo adecuado.
+
+pre:
+
+post:
+
+TElementoAB insertar (unElemento : TElementoAB) devuelve un booleano   O(N)
+COM
+    si unElemento.etiqueta < etiqueta
+        si hijoIzq <> nulo
+            devolver hijoIzq.insertar(unElemento)   O(N)
+        sino
+            hijoIzq <- unElemento                   O(1)
+            devolver verdadero                      O(1)
+        fin si
+    sino si unElemento.etiqueta > etiqueta
+        si hijoDer <> nulo
+            devolver hijoDer.insertar(unElemento)   O(N)
+        sino
+            hijoDer <- unElemento                   O(1)
+            devolver verdadero                      O(1)
+        fin si
+    fin si
+    devolver falso                                  O(1)
+FIN
+
+
+
+Ejercicio 2
+
+Metodo Árbol
+LN: 
+si la raíz es nula devolvemos 0, sino devolvemos lo que devuelva la llamada de obtenerCantidadHojas de la raíz.
+
+pre:
+
+post:
+
+TArbolBB obtenerCantidadHojas () devuelve tipo entero
+COM
+    si raiz = nulo
+        devolver 0
+    fin si
+    devolver raiz.obtenerCantidadHojas
+FIN
+
+Metodo elemento
+LN:
+Creamos un contador de hojas que empieza en 0 y un booleano de si es hoja que empieza en verdadero.
+Nos fijamos si tiene hijos, si tiene, sumamos la cantidad de hojas que teniamos con las que devuelve 
+la llamada de obtenerCantidadHojas del hijo especifico y cambiamos el booleano de esHoja a falso.
+al final si esHoja es verdadero devolvemos 1 sino devolvemos el contador de hojas.
+
+pre:
+
+post:
+
+TElementoAB obtenerCantidadHojas() devuelve tipo entero
+COM
+    int hojas <-0
+    booleano esHoja <- verdadero
+    si hijoIzq <> nulo
+        hojas <- hojas + hijoIzq.obtenerCantidadHojas
+        esHoja <- falso
+    fin si
+    si hijoDer <> nulo
+        hojas <- hojas + hijoDer.obtenerCantidadHojas
+        esHoja <- falso
+    fin si
+    si esHoja
+        devolver 1 
+    fin si
+    devolver hojas
+FIN
+
+
+
+Ejercicio 3
+
+Metodo Árbol
+LN: 
+si la raíz es nula devolvemos 0, sino devolvemos lo que devuelva la llamada de sumaDeClaves de la raíz.
+
+pre:
+
+post:
+
+TArbolBB sumaDeClaves () devuelve tipo entero
+COM
+    si raiz = nulo
+        devolver 0
+    fin si
+    devolver raiz.sumaDeClaves
+FIN
+
+Metodo elemento
+LN:
+creamos un contador que empieza vacio, primero chequeamos si tenemos hijos, en caso que tengamos
+sumamos al total lo que devuelve la llamada de sumaDeClaves de cada hijo, al final devolvemos el total 
+mas la clave del nodo actual.
+
+pre:
+las claves de los elementos son de tipo entero
+post:
+
+TElementoAB sumaDeClaves() devuelve tipo entero
+COM
+    int total <-0
+    si hijoIzq <> nulo
+        total <- total + hijoIzq.sumaDeClaves
+    fin si
+    si hijoDer <> nulo
+        total <- total + hijoDer.sumaDeClaves
+    fin si
+    devolver total + clave
+FIN
+

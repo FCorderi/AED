@@ -126,8 +126,58 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
     @Override
     public TElementoAB eliminar(Comparable unaEtiqueta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        if (unaEtiqueta.compareTo(this.etiqueta) < 0) {
+            if (hijoIzq != null) {
+                hijoIzq = hijoIzq.eliminar(unaEtiqueta);
+            }
+            return this;
+        } else if (unaEtiqueta.compareTo(this.etiqueta) > 0) {
+            if (hijoDer != null) {
+                hijoDer = hijoDer.eliminar(unaEtiqueta);
+            }
+            return this;
+        } else {
+            return quitaElNodo();
+        }
+    }
+
+    private TElementoAB quitaElNodo() {
+        if (hijoIzq == null) {
+            return hijoDer;
+        }
+        if (hijoDer == null) {
+            return hijoIzq;
+        }
+        TElementoAB elHijo = hijoIzq;
+        TElementoAB elPadre = this;
+        while (elHijo.hijoDer != null) {
+            elPadre = elHijo;
+            elHijo = elHijo.hijoDer;
+        }
+        if (elPadre != this) {
+            elPadre.hijoDer = elHijo.hijoIzq;
+            elHijo.hijoIzq = hijoIzq;
+        }
+        elHijo.hijoDer = hijoDer;
+        return elHijo;
+    }
+
+    public int obtenerCantidadHojas() {
+        int hojas = 0;
+        boolean esHoja = true;
+        if (hijoIzq != null) {
+            hojas = hojas + hijoIzq.obtenerCantidadHojas();
+            esHoja = false;
+        }
+        if (hijoDer != null) {
+            hojas = hojas + hijoDer.obtenerCantidadHojas();
+            esHoja = false;
+        }
+        if (esHoja) {
+            return 1;
+        } else {
+            return hojas;
+        }
     }
 
 }

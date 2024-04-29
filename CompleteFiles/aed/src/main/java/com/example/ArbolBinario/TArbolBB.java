@@ -13,6 +13,10 @@ public class TArbolBB<T> implements IArbolBB<T> {
         raiz = null;
     }
 
+    public boolean esVacio() {
+        return (raiz == null);
+    }
+
     @Override
     public boolean insertar(TElementoAB<T> unElemento) {
         if (raiz != null) {
@@ -58,6 +62,14 @@ public class TArbolBB<T> implements IArbolBB<T> {
     public void eliminar(Comparable unaEtiqueta) {
         if (raiz != null) {
             raiz.eliminar(unaEtiqueta);
+        }
+    }
+
+    public int obtenerCantidadHojas() {
+        if(esVacio()){
+            return 0;
+        }else{
+            return raiz.obtenerCantidadHojas();
         }
     }
 
