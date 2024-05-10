@@ -1,0 +1,222 @@
+1. Obtener la menor clave del árbol
+Metodo árbol
+LN:
+Chequeamos si el árbol está vacío, si lo es devolvemos nulo, 
+sino devolvemos la llamada de obtenerMenorClave de la raíz.
+
+pre:
+
+post:
+
+TArbolBB obtenerMenorClave() devuelve tipo comparable   O(N)
+COM
+    si esVacio() 
+        devolver nulo                               O(1)
+    fin si
+    devolver raiz.obtenerMenorClave()               O(N)
+FIN
+
+Metodo elemento
+LN:
+guardamos la etiqueta del elemento actual como claveMenor, luego si tenemos hijo izquierdo 
+sobreescribimos claveMenor con lo que devuelva el hijo izquierdo.
+Al final devolvemos claveMenor.
+
+pre:
+
+post:
+
+TElementoAB obtenerMenorClave() devuelve tipo comparable    O(N)
+COM
+    Comparable claveMenor <- etiqueta               O(1)
+    si hijoIzq <> nulo
+        claveMenor <- hijoIzq.obtenerMenorClave()   O(N)
+    fin si
+    devolver claveMenor                             O(1)
+FIN
+
+
+
+2. Obtener la mayor clave del árbol
+Metodo árbol
+LN:
+Chequeamos si el árbol está vacío, si lo es devolvemos nulo, 
+sino devolvemos la llamada de obtenerMayorClave de la raíz.
+
+pre:
+
+post:
+
+TArbolBB obtenerMayorClave() devuelve tipo comparable   O(N)
+COM
+    si esVacio() 
+        devolver nulo                       O(1)
+    fin si
+    devolver raiz.obtenerMayorClave()       O(N)
+FIN
+
+Metodo elemento
+LN:
+guardamos la etiqueta del elemento actual como claveMayor, luego si tenemos hijo derecho 
+sobreescribimos claveMayor con lo que devuelva el hijo derecho.
+Al final devolvemos claveMayor.
+
+pre:
+
+post:
+
+TElementoAB obtenerMayorClave() devuelve tipo comparable    O(N)
+COM
+    Comparable claveMayor <- etiqueta               O(1)
+    si hijoDer <> nulo
+        claveMayor <- hijoDer.obtenerMayorClave()   O(N)
+    fin si
+    devolver claveMayor                             O(1)
+FIN
+
+
+4. Obtener la cantidad de nodos de un nivel dado (por parámetro)
+Metodo Árbol
+LN: 
+si la raíz es nula devolvemos 0, sino devolvemos lo que devuelva la llamada de contarNodosNivel de la raíz.
+
+pre:
+
+post:
+
+TArbolBB contarNodosNivel (nivel : tipo entero) devuelve tipo entero   O(N)
+COM
+    si raiz = nulo
+        devolver 0              O(1)
+    fin si
+    devolver raiz.contarNodosNivel(nivel)  O(N)
+FIN
+
+Metodo elemento
+LN:
+creamos un contador que empieza vacio, primero nos fijamos si el nivel en el que estamos es 0, si es así,
+devolvemos 1, luego chequeamos si tenemos hijos, en caso que tengamos
+sumamos al total lo que devuelve la llamada de contarNodosNivel de cada hijo pasandole como parametro el nivel -1,
+al final devolvemos el total.
+
+pre:
+
+post:
+
+TElementoAB contarNodosNivel(nivel : tipo entero) devuelve tipo entero O(N)
+COM
+    int totalNodos <-0                          O(1)
+    si nivel = 0
+        devolver 1                              O(1)
+    fin si                               
+    si hijoIzq <> nulo
+        totalNodos <- totalNodos + hijoIzq.contarNodosNivel(nivel - 1)   O(N)
+    fin si
+    si hijoDer <> nulo
+        totalNodos <- totalNodos + hijoDer.contarNodosNivel(nivel - 1)   O(N)
+    fin si
+    devolver totalNodos                         O(1)
+FIN
+
+
+
+5. Listar todas las hojas cada una con su nivel.
+Metodo Árbol
+LN: 
+si la raíz es nula devolvemos 0, sino devolvemos lo que devuelva la llamada de listarHojasConNiveles de la raíz, 
+pasandole como parametro 0 que sería el contador de niveles.
+
+pre:
+
+post:
+
+TArbolBB listarHojasConNiveles () devuelve tipo String   O(N)
+COM
+    si esVacio()
+        devolver ""                         O(1)
+    fin si
+    devolver raiz.listarHojasConNiveles(0)   O(N)
+FIN
+
+Metodo elemento
+LN:
+Primero creamos un Stringbuilder llamado lista en el cual vamos a ir guardando el resultado, luego creamos un booleano que va a indicar si el nodo es hoja o no
+luego chequeamos si tiene hijo izquierdo o derecho, en cada caso si lo tiene, agregamos a lista lo que devuelve la llamada recursiva
+de listarHojasConNiveles de tal hijo, pasandole como parametro el nivel + 1 e indicamos que el nodo no es hoja.
+Por ultimo chequeamos si es hoja o no, si lo es devolvemos la etiqueta y el nivel, sino devolvemos solo la lista.
+
+pre:
+
+post:
+
+TElementoAB listarHojasConNiveles(nivel : tipo entero) devuelve tipo entero O(N)
+COM
+    StringBuilder lista <- nuevo StringBuilder("")                              O(1)
+    booleano esHoja <- verdadero
+    si hijoIzq <> nulo
+        lista.append(hijoIzq.listarHojasConNiveles(nivel + 1))                  O(1)
+        esHoja <- false                                                         O(1)
+    fin si
+    si hijoDer <> nulo
+        si lista.equals("")
+            lista.append(hijoDer.listarHojasConNiveles(nivel + 1))              O(N)
+        sino
+            lista.append("\n" + hijoDer.listarHojasConNiveles(nivel + 1))    O(N)
+        fin si
+        esHoja <- falso                                                         O(1)
+    fin si
+    si esHoja
+        devolver etiqueta + " Nivel: " + nivel                                  O(1)
+    sino
+        devolver lista                                                          O(1)
+    fin si
+FIN
+
+
+
+6. Verificar si el árbol es de búsqueda.
+Metodo de árbol
+LN:
+si la raíz es nula devolvemos verdadero, sino devolvemos 
+lo que devuelva la llamada de esDeBusqueda de la raíz, 
+
+pre:
+
+post:
+
+TArbolBB esDeBusqueda() devuelve tipo booleano
+COM
+    si esVacio()
+        devolver verdadero
+    fin si
+    devolver raiz.esDeBusqueda()
+FIN
+
+Metodo de Elemento
+LN:
+
+TElementoAB esDeBusqueda() devuelve tipo booleano
+COM
+    booleano esBusqueda <- verdadero
+    si hijoIzq <> nulo
+        si hijoIzq.etiqueta < etiqueta
+            esBusqueda <- hijoIzq.esDeBusqueda()
+            si !esBusqueda
+                devolver falso
+            fin si
+        sino
+            devolver falso
+        fin si
+    fin si
+    si hijoDer <> nulo
+        si hijoDer.etiqueta < etiqueta
+            esBusqueda <- hijoDer.esDeBusqueda()
+            si !esBusqueda
+                devolver falso
+            fin si
+        sino
+            devolver falso
+        fin si
+    fin si
+    devolver esBusqueda
+FIN

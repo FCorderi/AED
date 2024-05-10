@@ -1,0 +1,36 @@
+Este método inserta un elemento en la lista de forma ordenada. Si la lista es
+vacía se inserta el elemento en la primera posición.
+Si la lista no es vacía, se recorre la lista hasta encontrar el lugar donde
+se debe insertar el elemento.
+
+Precondiciones: El nodo a insertar no debe ser nulo. La lista debe estar
+                ordenada.
+Postcondiciones: Se inserta el nodo en la posición correcta, manteniendo el
+                orden en la lista.
+Tiempo de ejecución: O(N)
+Casos de Prueba:
+    - La lista está vacía.
+    - El nodo a insertar es menor que el primer nodo de la lista.
+    - El nodo a insertar es mayor que el último nodo de la lista.
+    - El nodo a insertar se inserta algun lugar del medio de la lista.
+
+Pseudocodigo:
+insertar(Nodo nuevo):
+INICIO
+    Nuevo Nodo aux <- getPrimero()
+    Si aux=null o aux.getEtiqueta() > nuevo.getEtiqueta() entonces
+        setPrimero(nuevo)
+        nuevo.setSiguiente(aux)
+        setCantElementos(getCantElementos()+1)
+        return
+    FinSi
+    Si aux.getEtiqueta() = nuevo.getEtiqueta() entonces
+        return
+    FinSi
+    Mientras aux.getSiguiente() != null y aux.getSiguiente().getEtiqueta() < nuevo.getEtiqueta() hacer
+        aux <- aux.getSiguiente()
+    FinMientras
+    nuevo.setSiguiente(aux.getSiguiente())
+    setCantElementos(getCantElementos()+1)
+    aux.setSiguiente(nuevo)
+FIN

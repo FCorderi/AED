@@ -1,15 +1,57 @@
 package com.example.Lista;
 
-public class TDALista<T> implements ILista{
-    
+public class TDALista<T> implements ILista<T> {
+
     private TDANodo<T> primero;
-    
+    private int cantElementos;
+
+    public TDALista() {
+        primero = null;
+        cantElementos = 0;
+    }
+
+    public TDANodo<T> getPrimero() {
+        return this.primero;
+    }
+
     @Override
-    public void insertar(TDANodo nodo) {
-        if (this.primero == null) {
+    public void setPrimero(TDANodo<T> unNodo) {
+        if (esVacia()) {
+            this.primero = unNodo;
+        } else {
+            unNodo.setSiguiente(this.primero.getSiguiente());
+            this.primero = unNodo;
+        }
+    }
+
+    public int getCantElementos() {
+        return cantElementos;
+    }
+
+    @Override
+    public void setCantElementos(int nuevaCantElementos) {
+        this.cantElementos = nuevaCantElementos;
+    }
+
+    public void insertar(TDANodo<T>[] listaNodos) {
+        for (TDANodo<T> nodo : listaNodos) {
+            insertar(nodo);
+        }
+    }
+
+    @Override
+    public void insertar(T dato, Comparable clave) {
+        TDANodo<T> nuevoNodo = new TDANodo<T>(clave, dato);
+
+        insertar(nuevoNodo);
+    }
+
+    @Override
+    public void insertar(TDANodo<T> nodo) {
+        TDANodo<T> nodoActual = this.primero;
+        if (nodoActual == null) {
             primero = nodo;
         } else {
-            TDANodo nodoActual = this.primero;
             while (nodoActual.getSiguiente() != null) {
                 nodoActual = nodoActual.getSiguiente();
             }
@@ -18,20 +60,20 @@ public class TDALista<T> implements ILista{
     }
 
     @Override
-    public TDANodo buscar(Comparable clave) {
-       if (this.primero == null) {
-           return null;
-       } else {
-           TDANodo nodoActual = this.primero;
-           while (nodoActual != null) {
-               if (nodoActual.compareTo(clave) == 0) {
-                   return nodoActual;
-               } else {
-                   nodoActual = nodoActual.getSiguiente();
-               }
-           }
-       }
-       return null;   
+    public TDANodo<T> buscar(Comparable clave) {
+        TDANodo<T> nodoActual = this.primero;
+        if (nodoActual == null) {
+            return null;
+        } else {
+            while (nodoActual != null) {
+                if (nodoActual.compareTo(clave) == 0) {
+                    return nodoActual;
+                } else {
+                    nodoActual = nodoActual.getSiguiente();
+                }
+            }
+        }
+        return null;
     }
 
     @Override
@@ -39,14 +81,14 @@ public class TDALista<T> implements ILista{
         if (this.primero == null) {
             return false;
         } else {
-            TDANodo nodoAEliminar;
-            if (this.primero.compareTo(clave) == 0){
+            TDANodo<T> nodoAEliminar;
+            if (this.primero.compareTo(clave) == 0) {
                 nodoAEliminar = this.primero;
                 this.primero = this.primero.getSiguiente();
                 nodoAEliminar.setSiguiente(null);
                 return true;
             } else {
-                TDANodo nodoActual = primero;
+                TDANodo<T> nodoActual = primero;
                 while (nodoActual.getSiguiente() != null) {
                     if (nodoActual.getSiguiente().compareTo(clave) == 0) {
                         nodoAEliminar = nodoActual.getSiguiente();
@@ -67,9 +109,9 @@ public class TDALista<T> implements ILista{
         if (this.primero == null) {
             System.out.println("[]");
             return "[]";
-        }else {
+        } else {
             StringBuilder lista = new StringBuilder("[");
-            TDANodo nodoActual = this.primero;
+            TDANodo<T> nodoActual = this.primero;
             while (nodoActual != null) {
                 lista.append(nodoActual.getEtiqueta());
                 if (nodoActual.getSiguiente() != null) {
@@ -89,9 +131,9 @@ public class TDALista<T> implements ILista{
         if (this.primero == null) {
             System.out.println("[]");
             return "[]";
-        }else {
+        } else {
             StringBuilder lista = new StringBuilder("[");
-            TDANodo nodoActual = this.primero;
+            TDANodo<T> nodoActual = this.primero;
             while (nodoActual != null) {
                 lista.append(nodoActual.getEtiqueta());
                 if (nodoActual.getSiguiente() != null) {
@@ -107,28 +149,22 @@ public class TDALista<T> implements ILista{
 
     @Override
     public int cantElementos() {
-       if (this.esVacia()) {
-           return 0;
-       } else {
-           TDANodo nodoActual = this.primero;
-           int contador = 1;
-           while (nodoActual.getSiguiente() != null) {
-               ++contador;
-               nodoActual = nodoActual.getSiguiente();
+        if (this.esVacia()) {
+            return 0;
+        } else {
+            TDANodo<T> nodoActual = this.primero;
+            int contador = 1;
+            while (nodoActual.getSiguiente() != null) {
+                ++contador;
+                nodoActual = nodoActual.getSiguiente();
             }
-           return contador;
-       } 
+            setCantElementos(contador);
+            return contador;
+        }
     }
 
     @Override
     public boolean esVacia() {
         return this.primero == null;
     }
-
-    @Override
-    public void setPrimero(TDANodo unNodo) {
-        unNodo.setSiguiente(this.primero.getSiguiente());
-        this.primero = unNodo;    
-    }
-    
 }

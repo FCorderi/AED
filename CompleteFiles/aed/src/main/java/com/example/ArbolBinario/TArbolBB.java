@@ -19,7 +19,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public boolean insertar(TElementoAB<T> unElemento) {
-        if (raiz != null) {
+        if (!esVacio()) {
             return raiz.insertar(unElemento);
         }
         raiz = unElemento;
@@ -28,7 +28,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-        if (raiz != null) {
+        if (!esVacio()) {
             return raiz.buscar(unaEtiqueta);
         }
         return null;
@@ -36,7 +36,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public String preOrden() {
-        if (raiz != null) {
+        if (!esVacio()) {
             return raiz.preOrden();
         }
         return null;
@@ -44,7 +44,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public String inOrden() {
-        if (raiz != null) {
+        if (!esVacio()) {
             return raiz.inOrden();
         }
         return null;
@@ -52,7 +52,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public String postOrden() {
-        if (raiz != null) {
+        if (!esVacio()) {
             return raiz.postOrden();
         }
         return null;
@@ -60,25 +60,65 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public void eliminar(Comparable unaEtiqueta) {
-        if (raiz != null) {
+        if (!esVacio()) {
             raiz.eliminar(unaEtiqueta);
         }
     }
 
     public int obtenerCantidadHojas() {
-        if(esVacio()){
+        if (esVacio()) {
             return 0;
-        }else{
+        } else
             return raiz.obtenerCantidadHojas();
+
+    }
+
+    public int contarNodosNivel(int nivel) {
+        if (esVacio()) {
+            return 0;
+        }
+        return raiz.contarNodosNivel(nivel);
+
+    }
+
+    public Comparable obtenerMenorClave() {
+        if (esVacio()) {
+            return null;
+        }
+        return raiz.obtenerMenorClave();
+
+    }
+
+    public Comparable obtenerMayorClave() {
+        if (esVacio()) {
+            return null;
+        }
+        return raiz.obtenerMayorClave();
+
+    }
+
+    public Comparable obtenerInmediatoAnterior(Comparable unaClave) {
+        if (esVacio()) {
+            return null;
+        }
+        return raiz.obtenerInmediatoAnterior(unaClave);
+
+    }
+
+    public String listarHojasConNiveles() {
+        if (esVacio()) {
+            return "";
+        } else {
+            return raiz.listarHojasConNiveles(0);
         }
     }
 
-    public int contarNodosNivel(int nivel){
-        if(raiz == null){
-            return 0;
-        }else{
-            return raiz.contarNodosNivel(nivel);
+    public boolean esDeBusqueda() {
+        if (esVacio()) {
+            return true;
         }
+        return raiz.esDeBusqueda();
+
     }
 
 }

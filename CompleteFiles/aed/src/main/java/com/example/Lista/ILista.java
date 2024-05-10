@@ -3,6 +3,14 @@ package com.example.Lista;
 public interface ILista<T> {
 
     /**
+     * Agrega un nuevo nodo al final de la lista.
+     *
+     * @param dato  - El valor que se almacenará en el nuevo nodo.
+     * @param clave - La clave única que identificará al nuevo nodo.
+     */
+    public void insertar(T dato, Comparable clave);
+
+    /**
      * Metodo encargado de agregar un nodo al final de la lista.
      *
      * @param nodo - Nodo a agregar
@@ -50,12 +58,30 @@ public interface ILista<T> {
     public int cantElementos();
 
     /**
+     * Cambia la cantidad de nodos en la lista
+     * 
+     */
+    public void setCantElementos(int cantElementos);
+
+    /**
      * Indica si la lista contiene o no elementos.
      *
      * @return Si tiene elementos o no.
      */
     public boolean esVacia();
     
-    public void setPrimero( TDANodo<T> unNodo);    
+    /**
+     * Establece el primer nodo de la lista.
+     *
+     * @param unNodo - El nodo que se establecerá como el primero en la lista.
+     */
+    public void setPrimero( TDANodo<T> unNodo);   
+    
+    /**
+     * Obtiene el primer nodo de la lista.
+     *
+     * @return El primer nodo de la lista.
+     */
+    public TDANodo<T> getPrimero();
 
 }

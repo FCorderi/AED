@@ -180,18 +180,98 @@ public class TElementoAB<T> implements IElementoAB<T> {
         }
     }
 
-    public int contarNodosNivel(int nivel){
+    public int contarNodosNivel(int nivel) {
         int sumaNodosNivel = 0;
-        if (nivel == 0){
+        if (nivel == 0) {
             return 1;
         }
-        if (hijoIzq != null){
-            sumaNodosNivel += hijoIzq.contarNodosNivel(nivel-1);
+        if (hijoIzq != null) {
+            sumaNodosNivel += hijoIzq.contarNodosNivel(nivel - 1);
         }
-        if(hijoDer != null){
-            sumaNodosNivel += hijoDer.contarNodosNivel(nivel-1);
+        if (hijoDer != null) {
+            sumaNodosNivel += hijoDer.contarNodosNivel(nivel - 1);
         }
         return sumaNodosNivel;
     }
 
+    public Comparable obtenerMenorClave() {
+        Comparable claveMenor = this.etiqueta;
+        if (hijoIzq != null) {
+            claveMenor = hijoIzq.obtenerMenorClave();
+        }
+        return claveMenor;
+    }
+
+    public Comparable obtenerMayorClave() {
+        Comparable claveMayor = this.etiqueta;
+        if (hijoDer != null) {
+            claveMayor = hijoDer.obtenerMayorClave();
+        }
+        return claveMayor;
+    }
+
+    public Comparable obtenerInmediatoAnterior(Comparable unaClave) {
+        String[] arregloDeClaves = this.inOrden().split(" ");
+        int contador = 0;
+        Comparable clave;
+        while (contador < arregloDeClaves.length) {
+            clave = Integer.parseInt(arregloDeClaves[contador]);
+            if (clave.compareTo(unaClave) == 0) {
+                if (contador > 0) {
+                    return Integer.parseInt(arregloDeClaves[contador - 1]);
+                } else {
+                    return null;
+                }
+            }
+            contador++;
+        }
+        return null;
+    }
+
+    public String listarHojasConNiveles(int nivelDelNodo) {
+        StringBuilder lista = new StringBuilder("");
+        boolean esHoja = true;
+        if (hijoIzq != null) {
+            lista.append(hijoIzq.listarHojasConNiveles(nivelDelNodo + 1));
+            esHoja = false;
+        }
+        if (hijoDer != null) {
+            if (lista.equals("")) {
+                lista.append(hijoDer.listarHojasConNiveles(nivelDelNodo + 1));
+            } else {
+                lista.append("\n" + hijoDer.listarHojasConNiveles(nivelDelNodo + 1));
+            }
+            esHoja = false;
+        }
+        if (esHoja) {
+            return etiqueta.toString() + " Nivel: " + nivelDelNodo;
+        } else {
+            return lista.toString();
+        }
+    }
+
+    public boolean esDeBusqueda() {
+        boolean esBusqueda = true;
+        if (hijoIzq != null) {
+            if (hijoIzq.etiqueta.compareTo(etiqueta) < 0) {
+                esBusqueda = hijoIzq.esDeBusqueda();
+                if (!esBusqueda) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        if (hijoDer != null) {
+            if (hijoDer.etiqueta.compareTo(etiqueta) > 0) {
+                esBusqueda = hijoDer.esDeBusqueda();
+                if (!esBusqueda) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        return esBusqueda;
+    }
 }
