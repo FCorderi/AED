@@ -8,11 +8,5 @@ public class App
 {
     public static void main( String[] args )
     {
-        ListaOrdenada<String> lista = new ListaOrdenada<String>();
-        
-        lista.insertar("3", "3");
-        lista.insertar("1", "1");
-        lista.insertar("2", "2");
-        lista.imprimir();
     }
 }

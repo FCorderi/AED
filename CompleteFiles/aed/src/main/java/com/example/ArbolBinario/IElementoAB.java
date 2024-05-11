@@ -1,5 +1,8 @@
 package com.example.ArbolBinario;
 
+import java.util.LinkedList;
+
+@SuppressWarnings({"rawtypes"})
 public interface IElementoAB<T> {
 
     /**
@@ -45,8 +48,6 @@ public interface IElementoAB<T> {
      */
     public TElementoAB<T> buscar(Comparable unaEtiqueta);
 
- 
-
     /**
      * Inserta un elemento dentro del arbol.
      *
@@ -63,6 +64,18 @@ public interface IElementoAB<T> {
     public String preOrden();
 
     /**
+     * Agrega las etiquetas del recorrido en preorden a una lista enlazada.
+     *
+     * @param unaLista Lista en la cual se deben agregar las etiquetas.
+     */
+    public void preOrden(LinkedList<T> unaLista);
+
+    /**
+     * Inserta en lista recibida por parametro el inorden del abol
+     */
+    public void inOrden(LinkedList<T> unaLista);
+    
+    /**
      * Imprime en inorden el arbol separado por guiones.
      *
      * @return String conteniendo el InOrden
@@ -75,6 +88,13 @@ public interface IElementoAB<T> {
      * @return String conteniendo el PostOrden
      */
     public String postOrden();
+
+    /**
+     * Agrega las etiquetas del recorrido en postorden a una lista enlazada.
+     *
+     * @param unaLista Lista en la cual se deben agregar las etiquetas.
+     */
+    public void postOrden(LinkedList<T> unaLista);
 
     /**
      * Retorna los datos contenidos en el elemento.

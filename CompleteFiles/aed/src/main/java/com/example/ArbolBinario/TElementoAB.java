@@ -1,5 +1,9 @@
 package com.example.ArbolBinario;
 
+import java.util.List;
+import java.util.LinkedList;
+
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class TElementoAB<T> implements IElementoAB<T> {
 
     private Comparable etiqueta;
@@ -12,7 +16,6 @@ public class TElementoAB<T> implements IElementoAB<T> {
      * @param unosDatos
      * @return
      */
-    @SuppressWarnings("unchecked")
     public TElementoAB(Comparable unaEtiqueta, T unosDatos) {
         etiqueta = unaEtiqueta;
         datos = unosDatos;
@@ -92,6 +95,23 @@ public class TElementoAB<T> implements IElementoAB<T> {
         return res;
     }
 
+    /**
+     * Realiza un recorrido preorden del subárbol cuya raíz es el nodo actual y agrega los datos de los
+     * elementos a una lista pasada como parámetro.
+     *
+     * @param unaLista Lista donde se agregarán los datos de los elementos en preorden.
+     */
+    @Override
+    public void preOrden(LinkedList<T> unaLista) {
+        unaLista.add(this.getDatos());
+        if (hijoIzq != null) {
+            hijoIzq.preOrden(unaLista);
+        }
+        if (hijoDer != null) {
+            hijoDer.preOrden(unaLista);
+        }
+    }
+
     @Override
     public String inOrden() {
         String res = "";
@@ -106,6 +126,17 @@ public class TElementoAB<T> implements IElementoAB<T> {
     }
 
     @Override
+    public void inOrden(LinkedList<T> unaLista) {
+        if (hijoIzq != null) {
+            hijoIzq.inOrden(unaLista);
+        }
+        unaLista.add(this.getDatos());
+        if (hijoDer != null) {
+            hijoDer.inOrden(unaLista);
+        }
+    }
+
+    @Override
     public String postOrden() {
         String res = "";
         if (hijoIzq != null) {
@@ -116,6 +147,23 @@ public class TElementoAB<T> implements IElementoAB<T> {
         }
         res += datos.toString() + " ";
         return res;
+    }
+
+    /**
+     * Realiza un recorrido postorden del subárbol cuya raíz es el nodo actual y agrega los datos de los
+     * elementos a una lista pasada como parámetro.
+     *
+     * @param unaLista Lista donde se agregarán los datos de los elementos en postorden.
+     */
+    @Override
+    public void postOrden(LinkedList<T> unaLista) {
+        if (hijoIzq != null) {
+            hijoIzq.postOrden(unaLista);
+        }
+        if (hijoDer != null) {
+            hijoDer.postOrden(unaLista);
+        }
+        unaLista.add(this.getDatos());
     }
 
     @Override
