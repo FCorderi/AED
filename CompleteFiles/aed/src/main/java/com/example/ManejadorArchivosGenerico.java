@@ -34,6 +34,7 @@ public class ManejadorArchivosGenerico {
         }
     }
     
+    @SuppressWarnings("resource")
     public static String[] leerArchivo(String nombreCompletoArchivo){
         FileReader fr;
         ArrayList<String> listaLineasArchivo = new ArrayList<String>();

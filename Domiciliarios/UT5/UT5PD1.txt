@@ -1,0 +1,84 @@
+Ejercicio 1:
+
+PARTE 1:
+
+-------------Insertar-------------
+
+Lenguaje natural: Se recorre un arbol generico, y se verifica si la etiqueta a insertar ya esta,
+		  si es asi, no se inserta, y se devulve el el mensaje correspondiente.
+		  Si la etiqueta a insertar no esta, se recorre el arbol en busca de la etiqueta del padre 
+		  del nuevo elemento a insertar. Si esta, se inserta el elemento y se devuelve el mensaje correspondiente,
+		  sino esta, el elemento no se inserta y se devuleve el mensaje correspondiente.
+
+Precondiciones: 
+
+
+Postcondiciones: - Si el padre estaba y el elemento a insertar no estaba previamente, el elemento se insertara en el arbol
+		 - Si el padre no estaba, el elemento no se insertara en el arbol.
+		 - Si el elemento a insertar ya estaba, no se insertara en el arbol.
+
+Seudocodigo:
+
+TArbolGenerico
+insertar(etiqueta : TipoEtiqueta, etiquetaPadre : TipoEtiqueta) : booleano
+COM
+	nodo <- Nuevo Nodo(etiqueta)
+	SI esVacio() AND etiquetaPadre <> "" ENTONCES
+		devolver falso
+	SINO SI etiquetaPadre = "" ENTONCES
+		SI NOT esVacio() AND raiz.buscar(etiqueta) <> nulo ENTONCES
+			devolver falso
+		FINSI
+		nodo.hijo <- raiz
+		raiz <- nodo
+		devolver true
+	SINO
+		devolver raiz.insertar(etiqueta, etiquetaPadre)
+	FINSI
+FINAL
+
+TNodoArbolGenerico
+insertar(etiqueta : TipoEtiqueta, etiquetaPadre : TipoEtiqueta) : booleano
+COM
+	SI buscar(etiqueta) <> nulo ENTONCES
+		DEVOLVER falso
+	FINSI
+	elPadre <- buscar(etiquetaPadre)
+	nuevoNodo <- Nuevo Nodo(etiqueta)
+	SI elPadre <> nulo ENTONCES
+		nuevoNodo.hermanoIzquierdo(elPadre.primerHijo)
+		elPadre.primerHijo <- nuevoNodo
+		devolver true
+	SINO
+		devolver false
+	FINSI
+FIN
+
+PARTE 2:
+
+CASOS DE PRUEBA DE LOS METODOS EN LENGUAJE NATURAL
+
+-------------Casos de Prueba Insertar-------------
+
+
+Lenguaje natural: 1-Dado un arbol vacio y una etiqueta del elemento padre distinto de "", se verifica que devulva false.
+		  2-Dado un arbol con elementos, y una etiqueta del elemento padre distinta de "", se verifica que se haya insertado el nodo como hijo del padre indicado.
+		  3-Dado un arbol con elementos, y una etiqueta del elemento padre igual a "", se verifica que se devulva true y que la nueva etiqueta sea la raiz.
+		  4-Dado un arbol con elementos, y una etiqueta a insertar ya presente en el arbol, se verifica que se devuelva false y no se inserte el elemento.
+		  5-Dado un arbol vacio, y una etiqueta con del elemento padre igual "", se verifica que se inserte en el arbol.
+
+-------------Casos de Prueba Buscar-------------
+
+Lenguaje natural: 1-Dado un arbol vacio, se verifica que se devulava nulo.
+		  2-Dado un arbol con elementos, pero que no tiene la etiqueta buscada, se verifica que se devuelva nulo.
+		  3-Dado un arbol con elementos, y con la etiqueta buscada, se verifica que se devuelva el elemento buscado.
+		  4-El arbol permanece inmutado.
+
+-------------Casos de Prueba ListarIdentado-------------
+
+Lenguaje natural: 1-Dado un arbol vacio, se verifica que se devuelva "".
+		  2-Dado un arbol con elementos, se verifica que se devulva una lista con el formato que corresponde.
+		  3-El arbol permanece inmutado.
+
+		
+		  

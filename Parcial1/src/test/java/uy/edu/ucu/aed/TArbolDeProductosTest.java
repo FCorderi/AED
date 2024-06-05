@@ -3,7 +3,6 @@ package uy.edu.ucu.aed;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TArbolDeProductosTest {
@@ -77,5 +76,14 @@ public class TArbolDeProductosTest {
         double expectedResult2 = 1.0;
         
         assertEquals(expectedResult2, arbolProductos.longIntMed());
+    }
+
+    @Test
+    public void oneElementTreeReturnsCero(){
+        arbolProductos.insertar("1", producto1);
+        
+        double expectedResult = 0.0;
+
+        assertEquals(expectedResult, arbolProductos.longIntMed());
     }
 }

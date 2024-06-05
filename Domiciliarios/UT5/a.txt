@@ -1,0 +1,35 @@
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+
+if = 15
+int = 43
+for = 39
+static = 19+20+1+20+9+3 = 72
+class = 3+12+1+38 = 54
+new = 14+5+23 = 42
+this = 20+8+9+19 = 56
+add = 1+8
